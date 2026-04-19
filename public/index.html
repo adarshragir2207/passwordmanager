@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Password Manager</title>
+    <!-- Modern Google Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons for aesthetics -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div id="app" class="glass-container">
+        <!-- Auth View -->
+        <div id="auth-view" class="view">
+            <div class="auth-header">
+                <i class="fa-solid fa-shield-halved fa-3x glowing-icon"></i>
+                <h2>Secure Vault</h2>
+                <p>Welcome back! Please authenticate to access your passwords.</p>
+            </div>
+            
+            <div class="auth-forms">
+                <div class="form-container">
+                    <h3><i class="fa-solid fa-right-to-bracket"></i> Login</h3>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="login-username" placeholder="Username" required />
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="login-password" placeholder="Password" required />
+                        </div>
+                        <button type="submit" class="primary-btn">Login</button>
+                    </form>
+                    <p id="login-error" class="error"></p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-container">
+                    <h3><i class="fa-solid fa-user-plus"></i> Register</h3>
+                    <form id="register-form">
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="register-username" placeholder="Choose Username" required />
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="register-password" placeholder="Choose Password" required />
+                        </div>
+                        <button type="submit" class="secondary-btn">Register</button>
+                    </form>
+                    <p id="register-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Vault View -->
+        <div id="vault-view" class="view" style="display: none;">
+            <div class="header">
+                <div class="header-title">
+                    <i class="fa-solid fa-vault fa-2x glowing-icon"></i>
+                    <h2>Vault - <span id="current-user"></span></h2>
+                </div>
+                <button id="logout-btn" class="danger-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+            
+            <p id="info-text">
+                <i class="fa-solid fa-circle-info"></i> Your master password is hashed. All stored passwords are symmetrically encrypted in the database.
+            </p>
+            
+            <div class="vault-content">
+                <div class="add-password-section glass-panel">
+                    <h3><i class="fa-solid fa-plus"></i> Add New Entry</h3>
+                    <div class="input-group">
+                        <i class="fa-solid fa-globe"></i>
+                        <input type="text" id="websitename" placeholder="Website / App Name" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-user-tag"></i>
+                        <input type="text" id="vault-username" placeholder="Username" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" id="vault-password" placeholder="Password" />
+                    </div>
+                    <button id="create" class="primary-btn"><i class="fa-solid fa-floppy-disk"></i> Save Password</button>
+                </div>
+
+                <div class="passwords-section glass-panel">
+                    <h3><i class="fa-solid fa-list"></i> Your Passwords</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Website</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="password-list">
+                                <!-- Rows will be dynamically added here via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
